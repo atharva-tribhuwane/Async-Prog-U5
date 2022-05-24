@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Signup</title>
+        <style>
+             *{
+            margin: 0px;
+            padding: 0px;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+        #navbar{
+            background-color: rgb(61, 61, 61);
+            padding: 1%;
+            display: flex;
+            justify-content:end;
+            /* margin-bottom: 2%; */
+        }
+        #navbar>div{
+            /* border: 1px solid yellow; */
+            width: 18%;
+            /* padding: 1%; */
+        }
+        #navbar>div>a{
+            padding: 1%;
+            text-decoration: none;
+            color: white;
+            margin: 3%;
+            font-size: 18px;
+        }
+
+        #signup-form-div{
+            width: 60%;
+            margin: auto;
+            padding: 3%;
+        }
+        #signup-form-div>h1{
+            text-align: center;
+            margin-bottom: 5%;
+        }
+        #signup-form-div>form{
+            display: flex;
+            flex-direction: column;
+            width: 50%;
+            margin: auto;
+            box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+            padding: 5%;
+
+        }
+        #signup-form-div>form>label{
+            font-size: 20px;
+            font-weight: 500;
+            color: goldenrod;
+            margin-bottom: 1%;
+        }
+        #signup-form-div>form>input{
+            padding: 1%;
+            /* margin: 0.5%; */
+            margin-bottom: 5%;
+            border-radius: 3px;
+            border: 1px solid grey;
+        }
+
+        #subsub{
+            background-color: goldenrod;
+            color: white;
+            font-weight: 700;
+            padding: 2%;
+            border: none;
+            width: 20%;
+            margin: auto;
+            cursor: pointer;
+        }
+
+        </style>
+    </head>
+
+    <body>
+        <div id="navbar">
+            <div>
+                <a href="./index.html">Home</a>
+                <a href="./signup.html">Signup</a>
+                <a href="./login.html">Login</a>
+            </div>
+        </div>
+        <div id="signup-form-div">
+            <h1>Signup</h1>
+            <form>
+               <label for="name">Name</label>
+               <input type="text" id="name" placeholder="Enter Your Name" required/>
+
+               <label for="contact">Contact no.</label>
+               <input type="tel" id="contact" placeholder="Enter Your Contact Number" required/>
+
+               <label for="email">Email</label>
+               <input type="email" id="email" placeholder="Enter Your Email" required/>
+
+               <label for="password">Password</label>
+               <input type="password" id="password" placeholder="Enter Your Password" required/>
+               
+               <input type="submit" id="subsub" />
+            </form>
+
+        </div>
+    </body>
+    <script>
+        let user_details = JSON.parse(localStorage.getItem("user_details"));
+        if(user_details == null){
+            localStorage.setItem("user_details", JSON.stringify([]));
+        }
+
+        document.querySelector("#subsub").addEventListener("click", function(){
+            event.preventDefault();
+            let flag = 0;
+            let user_details = JSON.parse(localStorage.getItem("user_details"));
+
+            let name = document.getElementById("name").value;
+            let contact = document.getElementById("contact").value;
+            let email = document.getElementById("email").value;
+            let password = document.getElementById("password").value;
+            
+            let tempuser = {
+                name:name,
+                contact:contact,
+                email:email,
+                password:password
+            };
+            user_details.forEach(function(user){
+                if(user.email == email || user.contact == contact){
+                    alert("User Already Registered");
+                    flag=1;
+                }
+            });
+
+            if(flag == 0){
+                console.log(tempuser);
+                user_details.push(tempuser);
+                localStorage.setItem("user_details", JSON.stringify(user_details));
+            }
+
+        });
+    </script>
+</html>

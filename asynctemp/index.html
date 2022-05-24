@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+
+        #navbar {
+            background-color: rgb(61, 61, 61);
+            padding: 1%;
+            display: flex;
+            justify-content: end;
+            /* margin-bottom: 2%; */
+        }
+
+        #navbar>div {
+            /* border: 1px solid yellow; */
+            width: 18%;
+            /* padding: 1%; */
+        }
+
+        #navbar>div>a {
+            padding: 1%;
+            text-decoration: none;
+            color: white;
+            margin: 3%;
+            font-size: 18px;
+        }
+        #slideshow{
+            width: 100%;
+            margin: auto;
+        }
+        #slideshow>img{
+            width: 100%;
+            height: 60vh;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="navbar">
+        <div>
+            <a href="./index.html">Home</a>
+            <a href="./signup.html">Signup</a>
+            <a href="./login.html">Login</a>
+        </div>
+    </div>
+    <div id="slideshow">
+        <img src="" alt="" id="imgg"/>
+
+    </div>
+
+    <div id="sort-buttons">
+
+        <!--Add sorting here-->
+    </div>
+    <div id="movies">
+        <!--Show list of movies here-->
+    </div>
+</body>
+<script>
+    let movies = [];
+    movies.push("https://i.pinimg.com/originals/e0/02/70/e00270957104fdb69e4622633886ffd5.jpg");
+    movies.push("https://assets.libsyn.com/secure/content/7489890");
+    movies.push("https://cdn11.bigcommerce.com/s-nq6l4syi/images/stencil/608x608/products/151165/408920/201062-1024__85497.1645446735.jpg?c=2");
+
+    let i=0;
+    
+    console.log(movies);
+
+    setInterval(slideShow,2000);
+
+    function slideShow(){
+        let img = document.getElementById("imgg");
+        img.src = movies[i];
+        i++;
+        if(i === movies.length){
+            i=0;
+        }
+    }
+</script>
+</html>
